@@ -26,12 +26,7 @@ module CharacterTools
   end
 
   def generate_gender
-    if Dice.roll_dice(6,1,1) >= 4
-      gender = "M"
-    else
-      gender = "F"
-    end
-    return gender
+    ['M', 'F'].sample
   end
  
   def generate_appearence
