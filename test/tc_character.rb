@@ -127,4 +127,52 @@ class TestCharacter < Test::Unit::TestCase
     @base_character.plot = plot
     assert(@base_character.plot == plot)
   end 
+
+  def test_has_no_skills
+    assert(@base_character.skills == nil)
+  end
+
+  def test_has_skills
+    assert(@character.skills.class == Hash)
+  end
+
+  def test_set_get_skills
+    skills = {'Carousing' => 1, 'GunCbt' => 1}
+    @base_character.skills = skills
+    assert(@base_character.skills.class == Hash)
+    assert(@base_character.skills == skills)
+  end
+
+  def test_has_no_careers
+    assert(@base_character.careers == nil)
+  end
+
+  def test_has_careers
+    assert(@character.careers.class == Hash)
+  end
+  
+  def test_set_get_careers
+    careers = {'Noble' => 4, 'Marine' => 2}
+    @base_character.careers = careers
+    assert(@base_character.careers.class == Hash)
+    assert(@base_character.careers == careers)
+  end
+
+  def test_has_no_stuff
+    assert(@base_character.stuff == nil)
+  end
+
+  def test_has_stuff
+    assert(@character.stuff.class == Hash)
+    assert(@character.stuff['benefits'].class == Hash)
+    assert(@character.stuff['cash'].class == Integer)
+    assert(@character.stuff.length == 2)
+  end
+ 
+  def test_set_get_stuff
+    stuff = { 'benefits' => Hash.new, 'cash' => 0}
+    @base_character.stuff = stuff
+    assert(@base_character.stuff == stuff)
+  end 
+
 end
