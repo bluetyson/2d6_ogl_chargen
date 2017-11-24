@@ -3,7 +3,7 @@
 
 module CharacterTools
 
-  $DATA_PATH  = File.expand_path("../../../data", __FILE__)
+  $DATA_PATH  = File.expand_path("../../data", __FILE__)
   require "dice"
   require "name"
 
