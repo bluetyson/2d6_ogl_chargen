@@ -32,15 +32,9 @@ class Character
 
   def to_s
     printf("%s ", title) if noble?()
-    printf("%s %s %s [%s] Age %d \n %s \n %s %s\n", 
+    printf("%s %s %s [%s] Age %d \n", 
       @name, @species.capitalize, @gender.capitalize, @upp, @age,
-      @appearence,
-      @temperament, @plot
       ) 
-  end
-
-  def to_fiction
-    to_s
   end
 
   def run_career(career, terms)
