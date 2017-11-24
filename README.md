@@ -2,17 +2,18 @@ CT_Character_Generator
 ======================
 
 This provides mechanisms for creating "Classic Traveller" (LBB 1-8)
-characters. It currently uses Ruby 1.8, SQLite3, and JSON. 
+characters. It currently uses Ruby and SQLite3, though the latter will go 
+away soon.
 
 ```
-  ruby bin/Chargen.rb -h
-  Usage: Chargen [options]
+  ruby bin/chargen.rb -h
+  Usage: chargen [options]
     -c career                        Career, defaults based on Soc
     -t terms                         Terms, defaults to range of 1-5
 ```
 For example:
 ```
-  ruby bin/Chargen.rb -c Navy -t 4
+  ruby bin/chargen.rb -c Navy -t 4
   Knight PO2 Marlin Underwood Male Age: 34 867A9B Navy: 4 
   Frizzed medium blond close cropped hair black skin 
   GunCbt-1 Leader-1 Blade-1 Carouse-1 Instruction-1 ShipTactics-1 
