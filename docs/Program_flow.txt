@@ -1,15 +1,19 @@
 CT_Character_Tools
 ==================
 
+## Currently being updated with new thoughts and ideas. ##
+
 Use Cases
 =========
 
-Removed several use cases. This program is just to create NPCs.
-Something else will use the basics and be able to edit characters.
+Removed several use cases. Need to think through the processes. 
 
 UC.1  Create a new character from scratch. 
 UC.5  Run dual careers (Navy and Noble). 
 UC.7  Output to XML, JSON, Wiki, CSV, HTML, Neo4J, SQL. 
+UC.8  Pull Character from datastore.
+UC.9  Update missing fields programaticlly.
+UC.10 Web/GUI front end to view and edit character.
 
 
 Classes and Modules
