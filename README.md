@@ -1,8 +1,15 @@
 CT_Character_Generator
 ======================
 
+<<<<<<< HEAD
 This provides mechanisms for creating "Classic Traveller" (LBB 1-8)
 characters. It currently uses Ruby 1.8, SQLite3, and JSON. 
+=======
+This is the original version. It should remain stable unless
+serious bugs are found. 
+
+Ruby based NPC generator. It averages about 2 skills per term.
+>>>>>>> 0361dc8c02cc8a6f557af7a8f90bfd4c71f6bafa
 
 ```
   ruby bin/Chargen.rb -h
