@@ -6,9 +6,9 @@
 #$LOAD_PATH << File.expand_path("../../lib/Careers", __FILE__)
 #$LOAD_PATH << File.expand_path("../../lib/Tools", __FILE__)
 
-require "tools/character"
-require "tools/character_tools"
-require "tools/presenter"
+require "character"
+require "character_tools"
+require "presenter"
 
 def list_careers(career_dir)
   careers = Array.new

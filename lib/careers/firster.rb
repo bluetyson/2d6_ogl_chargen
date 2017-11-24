@@ -1,5 +1,5 @@
-require "tools/character_tools"
-require "tools/career"
+require "character_tools"
+require "career"
 
 class Firster < Career 
   def initialize  

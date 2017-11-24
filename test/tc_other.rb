@@ -1,7 +1,8 @@
 # Testing the Other class.
 
 require "test/unit"
-require "tools/character_tools"
+require "character"
+require "character_tools"
 require "careers/other"
 
 class TestOther < Test::Unit::TestCase

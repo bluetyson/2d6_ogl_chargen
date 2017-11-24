@@ -1,4 +1,4 @@
-require "tools/character_tools"
+require "character_tools"
 include CharacterTools
 
 class Character

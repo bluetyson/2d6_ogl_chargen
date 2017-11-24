@@ -3,9 +3,8 @@
 # http://ancientfarfuture.blogspot.com/2014/05/lords-of-imperium-revisiting-noble.html
 # Thanks Robert!
 
-require "tools/character_tools"
-require "tools/career"
-require "tools/dice"
+require "character_tools"
+require "career"
 
 class Noble < Career 
   def initialize

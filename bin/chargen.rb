@@ -3,9 +3,9 @@
 #   career defaults based on Soc and terms to 1-5.
 
 require "optparse"
-require "tools/character_tools"
-require "tools/character"
-require "tools/presenter"
+require "character_tools"
+require "character"
+require "presenter"
 
 $LOAD_PATH << File.expand_path("../../lib/careers", __FILE__)
 
@@ -77,7 +77,3 @@ unless basic_character
 end
 
 Presenter.show(character)
-#if options["sql"]
-#  require "tools/presenter_sql"
-#  PresenterSQL.show(character)
-#end

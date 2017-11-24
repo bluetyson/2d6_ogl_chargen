@@ -1,8 +1,8 @@
 # Testing the Noble class.
 
 require "test/unit"
-require "tools/character_tools"
-require "tools/character"
+require "character_tools"
+require "character"
 require "careers/noble"
 
 class TestNoble < Test::Unit::TestCase
@@ -29,7 +29,7 @@ class TestNoble < Test::Unit::TestCase
   def test_muster_out_cash
     assert(@character.stuff.has_key?('cash'))
     min_cash = 10000 * @half_terms
-    max_cash = 200000 * @half_terms
+    max_cash = 200000 * @half_terms * 2
     assert(@character.stuff["cash"] >= min_cash) 
     assert(@character.stuff['cash'] <= max_cash) 
   end 

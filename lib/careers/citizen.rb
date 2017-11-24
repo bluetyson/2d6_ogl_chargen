@@ -1,7 +1,7 @@
 # Class for the regular citizens. Takes a character, and optional number of terms.
 
-require "tools/character_tools"
-require "tools/career"
+require "character_tools"
+require "career"
 
 class Citizen < Career
   

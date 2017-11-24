@@ -3,9 +3,9 @@
 #$LOAD_PATH << File.expand_path("../../lib", __FILE__)
 
 require "test/unit"
-require "tools/character_tools"
+require "character"
+require "character_tools"
 require "careers/navy"
-require "tools/character"
 
 class TestNavy < Test::Unit::TestCase
 

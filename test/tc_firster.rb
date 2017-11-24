@@ -1,7 +1,8 @@
 # Testing the Firster class.
 
 require "test/unit"
-require "tools/character_tools"
+require "character"
+require "character_tools"
 require "careers/firster"
 
 class TestFirster < Test::Unit::TestCase

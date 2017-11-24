@@ -1,7 +1,8 @@
 # Testing the Citizen class.
 
 require "test/unit"
-require "tools/character_tools"
+require "character"
+require "character_tools"
 require "careers/citizen"
 
 class TestCitizen < Test::Unit::TestCase

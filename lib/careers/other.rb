@@ -1,6 +1,5 @@
-require "tools/character_tools"
-require "tools/character"
-require "tools/career"
+require "character_tools"
+require "career"
 
 class Other < Career
   def initialize

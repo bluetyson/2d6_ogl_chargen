@@ -4,8 +4,8 @@
 module CharacterTools
 
   $DATA_PATH  = File.expand_path("../../../data", __FILE__)
-  require "tools/dice"
-  require "tools/name"
+  require "dice"
+  require "name"
 
   NOBILITY = {
     "B" => { "F" => "Dame",     "M" => "Knight" },
