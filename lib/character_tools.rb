@@ -4,7 +4,6 @@
 module CharacterTools
 
   $DATA_PATH  = File.expand_path("../../data", __FILE__)
-  require "dice"
   require "name"
 
   NOBILITY = {
@@ -15,16 +14,27 @@ module CharacterTools
     "F" => { "F" => "Duchess",  "M" => "Duke" },
   }
 
-  def generate_upp
-    new_upp = String.new
-    6.times do
-      stat = Dice.roll_dice(6,2,1)
-      stat = stat.to_s(16).upcase
-      new_upp  = new_upp + stat
-    end
-    return new_upp
+  def roll_1
+    rand(1..6)
   end
 
+  def roll_2
+    rand(1..6) + rand(1..6)
+  end
+
+  UPP = Struct.new(:str, :dex, :end, :int, :edu, :soc) do
+    def self.generate
+      self.new(roll_2, roll_2, roll_2, roll_2, roll_2, roll_2)
+    end
+    def to_s
+      my_str = ""
+      self.each do |v|
+        my_str << v.to_s(16).upcase
+      end
+      return my_str
+    end
+  end 
+        
   def generate_gender
     ['M', 'F'].sample
   end
@@ -68,7 +78,6 @@ module CharacterTools
     return "humaniti"
   end
  
-  STAT_NAMES = %w{Str Dex End Int Edu Soc}
   def self.init
     character          = Character.new
     character.upp      = self.upp
@@ -83,7 +92,7 @@ module CharacterTools
   end
 
   def self.social_status(character)
-    soc = character.upp[5,1].to_i(16)
+    soc = character.upp[:soc]
     status = case soc     
       when 0..5   then  "other"
       when 11..15 then  "noble"
@@ -113,17 +122,12 @@ module CharacterTools
       stat_mod  = options["stat_mod"]
       character = options["character"]
       level     = stat_mod.split[0].to_i 
-      stat      = stat_mod.split[1]
+      stat      = stat_mod.split[1].downcase
       raise ArgumentError unless Integer(level)
-      stat_index = STAT_NAMES.index(stat)
-      raise ArgumentError unless character.upp =~ /[0-9A-F]{6}/
-      new_stat = character.upp[stat_index,1].to_i(16) + level
+      new_stat = character.upp[stat] + level
       new_stat = [new_stat, 15].min
       new_stat = [new_stat, 2].max
-      new_stat = new_stat.to_s(16).upcase
-      character.upp[stat_index] = new_stat
-    rescue TypeError
-      raise
+      character.upp[stat] = new_stat
     rescue ArgumentError
       raise
     end
@@ -147,72 +151,11 @@ module CharacterTools
     return c_hash
   end
 
-  # Save the Character data.
-  # Still not sure on this one. It works for the moment.
-  def self.save_character(character, file, format=json)
-    if File.exists?(file)
-      characters = Hash.new
-      characters_in = File.read(file)
-      characters = JSON.parse(characters_in) 
-      character_key = "#{character.upp}-#{character.name}"
-      character_key.gsub!(/[ ,']/, "")
-      characters[character_key] = self.hash_character(character)
-      c_file = File.open(file, "w")
-      c_file.write(JSON.pretty_generate(characters))
-      c_file.close
-    end
-  end
-
-  # Prints the character file in Pretty JSON.
-  def self.show_character_file(file, format=json)
-    if File.exists?(file)
-      characters = Hash.new
-      characters_in = File.read(file)
-      characters = JSON.parse(characters_in)
-      puts JSON.pretty_generate(characters) 
-    end
-  end
-
-  def self.show_one_character(character, mode = "txt")
-    Presenter.show(character, mode)
-  end
- 
-  # Prints the character in some specific format. Or "txt"
-  # if unspecified. 
-  def self.show_characters(file, format=json, mode="txt")
-    if File.exists?(file)
-      characters = Hash.new
-      characters_in = File.read(file)
-      characters = JSON.parse(characters_in)
-      characters.each do |key, array|
-        character = Character.new
-        character.name    = characters[key]["name"]
-        character.upp     = characters[key]["upp"]
-        character.gender  = characters[key]["gender"]
-        character.age     = characters[key]["age"]
-        character.careers = characters[key]["careers"]
-        character.skills  = characters[key]["skills"]
-        Presenter.show(character, mode)
-      end
-    end
-  end
-
-  def title()
-    soc = @upp[5,1]
+  def title(character)
+    soc = character.upp[:soc]
     if NOBILITY.has_key?(soc)
       return NOBILITY[soc][@gender]
     end
-  end 
-
-  def self.stat_modifier(options)
-    stat_mod  = 0 
-    upp       = options["character"].upp
-    index     = options["index"]
-    minimum   = options["minimum"].to_i(16)
-    modifier  = options["modifier"]
-    stat      = upp[index,1].to_i(16)
-    stat_mod  = modifier if stat >= minimum
-    return    stat_mod
   end 
 
   def get_random_line_from_file(file)
@@ -226,7 +169,8 @@ module CharacterTools
           new_array << line
         end
       end
-      result = new_array[rand(new_array.length - 1)]
+      #result = new_array[rand(new_array.length - 1)]
+      result = new_array.sample
     rescue SystemCallError
       raise 
     ensure
@@ -254,7 +198,7 @@ module CharacterTools
   end
 
   def self.morale(options = "")
-    morale   = Dice.roll_dice(1,6,1)
+    morale   = roll_1
     if options.class == Hash and options["character"].careers.length > 0
       high_morales    = ["Marine", "Army", "Firster"]
       medium_morales  = ["Navy", "Scout"]

@@ -52,7 +52,7 @@ class Noble < Career
   def rank(character)
     terms = character.careers["Noble"]
     promotion_roll_required = 10 - terms
-    promotion_level = (Dice.roll_dice(6,2) - promotion_roll_required) / 3
+    promotion_level = (CharacterTools.roll_2 - promotion_roll_required) / 3
     if promotion_level > 0 
       options               = Hash.new
       options["character"]  = character

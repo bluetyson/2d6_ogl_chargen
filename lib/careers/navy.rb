@@ -142,7 +142,7 @@ class Navy < Career
      officers = %w[ EN SLT LT LTCMDR CMDR CPT COMM FADM SADM GADM ]
     enlisted = %w[ SR SA AS PO3 PO2 PO1 CPO SCPO MCPO ]
     commission   = 10
-    commission_roll  = Dice.roll_dice(6,2,1) + terms - commission
+    commission_roll  = CharacterTools.roll_1 + terms - commission
     if commission_roll >= 0
       character.rank = officers[commission_roll/2]
     else

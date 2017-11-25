@@ -12,7 +12,7 @@ class Character
   end 
 
   def generate
-    @upp          = @char.fetch('upp', generate_upp)
+    @upp          = @char.fetch('upp', CharacterTools::UPP.generate)
     @gender       = @char.fetch('gender', generate_gender)
     @species      = @char.fetch('species', generate_species)
     @opts         = {'gender' => @gender, 'species' => @species}
@@ -28,13 +28,6 @@ class Character
 
   def init_stuff
     @char['stuff'] = {'cash' => 0, 'benefits' => Hash.new(0)}
-  end
-
-  def to_s
-    printf("%s ", title) if noble?()
-    printf("%s %s %s [%s] Age %d \n", 
-      @name, @species.capitalize, @gender.capitalize, @upp, @age,
-      ) 
   end
 
   def run_career(career, terms)

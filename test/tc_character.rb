@@ -14,13 +14,13 @@ class TestCharacter < Test::Unit::TestCase
   end 
 
   def test_has_upp
-    assert(@character.upp.length > 3)
+    assert(@character.upp.to_s.length > 3)
   end
 
   def test_set_get_upp
     upp   = '789ABC'
-    @base_character.upp = upp
-    assert(@base_character.upp == upp)
+    @base_character.UPP = [7,8,9,10,11,12]
+    assert(@base_character.upp.to_s == upp)
   end
 
   def test_has_no_gender
