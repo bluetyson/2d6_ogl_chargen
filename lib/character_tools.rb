@@ -100,6 +100,16 @@ module CharacterTools
     end
     return status 
   end
+
+  def title(character)
+    puts("char clas is #{character.class}.")
+    soc = character.upp[:soc]
+    puts("soc is #{soc}.")
+   
+    if NOBILITY.has_key?(soc)
+      return NOBILITY[soc][character.gender]
+    end
+  end 
   
   def increase_skill(options)
     character = options["character"]
@@ -150,16 +160,6 @@ module CharacterTools
     c_hash["skills"]  = character.skills
     return c_hash
   end
-
-  def self.title(char)
-    soc = char.upp[:soc]
-    puts("char clas is #{char.class}.")
-    puts("soc is #{soc}.")
- 
-    if NOBILITY.has_key?(soc)
-      return NOBILITY[soc][@gender]
-    end
-  end 
 
   def get_random_line_from_file(file)
     begin 

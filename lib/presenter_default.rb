@@ -3,7 +3,8 @@ module PresenterDefault
   def PresenterDefault.show(character)
     lines = Array.new
     lines[0] =  ""
-    lines[0] += "#{character.title} " if character.title
+    title = CharacterTools.title(character) if character.noble?
+    lines[0] += "#{title} " if title
     lines[0] += "#{character.rank} "  if character.rank
     lines[0] += "#{character.name} "  if character.name
     lines[0] += "#{character.gender} "  if character.gender
