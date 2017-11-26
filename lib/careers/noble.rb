@@ -61,7 +61,7 @@ class Noble < Career
         options["skill"]      = @advanced_skill_options.sample
         CharacterTools.modify_stat(options) 
       else
-        character.upp[:soc] = 10
+        character.upp[:soc] = 11
         options["skill"]      = @skill_options.sample
       end
       CharacterTools.increase_skill(options) 
