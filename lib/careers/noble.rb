@@ -57,12 +57,11 @@ class Noble < Career
       options               = Hash.new
       options["character"]  = character
       if character.noble?
-        options["stat_level"] = promotion_level
-        options["stat"]       = "Soc"
+        options["stat_mod"] = "+#{promotion_level} Soc"
         options["skill"]      = @advanced_skill_options.sample
         CharacterTools.modify_stat(options) 
       else
-        character.upp[5] = "B"
+        character.upp[:soc] = 10
         options["skill"]      = @skill_options.sample
       end
       CharacterTools.increase_skill(options) 

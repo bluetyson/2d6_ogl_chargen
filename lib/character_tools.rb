@@ -7,11 +7,11 @@ module CharacterTools
   require "name"
 
   NOBILITY = {
-    "B" => { "F" => "Dame",     "M" => "Knight" },
-    "C" => { "F" => "Baroness", "M" => "Baron" },
-    "D" => { "F" => "Marquesa", "M" => "Marquis" },
-    "E" => { "F" => "Countess", "M" => "Count" },
-    "F" => { "F" => "Duchess",  "M" => "Duke" },
+    10 => { "F" => "Dame",     "M" => "Knight" },
+    11 => { "F" => "Baroness", "M" => "Baron" },
+    12 => { "F" => "Marquesa", "M" => "Marquis" },
+    13 => { "F" => "Countess", "M" => "Count" },
+    14 => { "F" => "Duchess",  "M" => "Duke" }
   }
 
   def roll_1
@@ -151,8 +151,11 @@ module CharacterTools
     return c_hash
   end
 
-  def title(character)
-    soc = character.upp[:soc]
+  def self.title(char)
+    soc = char.upp[:soc]
+    puts("char clas is #{char.class}.")
+    puts("soc is #{soc}.")
+ 
     if NOBILITY.has_key?(soc)
       return NOBILITY[soc][@gender]
     end
@@ -211,8 +214,7 @@ module CharacterTools
   end
 
   def noble?()
-    soc = @upp[5,1].to_i(16)
-    return soc > 10 ? true : false
+    return @upp[:soc] > 10 ? true : false
   end
 
   module_function :get_random_line_from_file

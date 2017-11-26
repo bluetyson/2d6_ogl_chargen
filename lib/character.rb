@@ -4,7 +4,7 @@ include CharacterTools
 class Character
 
   attr_accessor :gender, :name, :upp, :skills, 
-      :careers, :age, :rank, :stuff,
+      :careers, :age, :rank, :stuff, :title,
       :appearence, :species, :plot, :temperament
 
   def initialize(char = {})

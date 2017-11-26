@@ -19,7 +19,7 @@ class TestCharacter < Test::Unit::TestCase
 
   def test_set_get_upp
     upp   = '789ABC'
-    @base_character.UPP = [7,8,9,10,11,12]
+    @base_character.upp = UPP.new(7,8,9,10,11,12)
     assert(@base_character.upp.to_s == upp)
   end
 
