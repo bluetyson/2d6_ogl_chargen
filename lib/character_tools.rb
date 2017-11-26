@@ -7,11 +7,11 @@ module CharacterTools
   require "name"
 
   NOBILITY = {
-    10 => { "F" => "Dame",     "M" => "Knight" },
-    11 => { "F" => "Baroness", "M" => "Baron" },
-    12 => { "F" => "Marquesa", "M" => "Marquis" },
-    13 => { "F" => "Countess", "M" => "Count" },
-    14 => { "F" => "Duchess",  "M" => "Duke" }
+    11 => { "F" => "Dame",     "M" => "Knight" },
+    12 => { "F" => "Baroness", "M" => "Baron" },
+    13 => { "F" => "Marquesa", "M" => "Marquis" },
+    14 => { "F" => "Countess", "M" => "Count" },
+    15 => { "F" => "Duchess",  "M" => "Duke" }
   }
 
   def roll_1
@@ -102,10 +102,7 @@ module CharacterTools
   end
 
   def title(character)
-    puts("char clas is #{character.class}.")
     soc = character.upp[:soc]
-    puts("soc is #{soc}.")
-   
     if NOBILITY.has_key?(soc)
       return NOBILITY[soc][character.gender]
     end
