@@ -42,10 +42,8 @@ option_parser = OptionParser.new do |opts|
   opts.on("-b", "--basic", "Just a basic Character") do
     basic_character = true
   end
-  #opts.on("-s", "--sql", "Provide SQL statement output") do |s|
-  #  options["sql"] = true
-  #end
 end
+
 option_parser.parse!
 
 character = Character.new
@@ -61,7 +59,7 @@ unless basic_character
   options["careers"].each_key do |career|
     options["careers"][career] = options["terms"]
   end
-  social_career     = CharacterTools.social_status(character)
+  social_career     = character.social_status
   if options["careers"].key?(social_career) or options["careers"].count == 0
     options["careers"][social_career] = options["terms"]
   else

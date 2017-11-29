@@ -42,6 +42,6 @@ class TestNoble < Test::Unit::TestCase
   def test_title_knight
     @character.upp = UPP.new(7,7,7,7,7,11)
     @character.gender = "M"
-    assert(CharacterTools.title(@character) == "Knight")
+    assert(@character.title == "Knight")
   end
 end

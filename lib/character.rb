@@ -1,10 +1,10 @@
 require "character_tools"
-include CharacterTools
 
 class Character
+  include CharacterTools
 
   attr_accessor :gender, :name, :upp, :skills, 
-      :careers, :age, :rank, :stuff, :title,
+      :careers, :age, :rank, :stuff,
       :appearence, :species, :plot, :temperament
 
   def initialize(char = {})
@@ -12,7 +12,7 @@ class Character
   end 
 
   def generate
-    @upp          = @char.fetch('upp', CharacterTools::UPP.generate)
+    @upp          = @char.fetch('upp', UPP::generate_upp)
     @gender       = @char.fetch('gender', generate_gender)
     @species      = @char.fetch('species', generate_species)
     @opts         = {'gender' => @gender, 'species' => @species}

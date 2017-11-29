@@ -18,12 +18,15 @@ module CharacterTools
     rand(1..6)
   end
 
-  def roll_2
+  def self.roll_2
     rand(1..6) + rand(1..6)
   end
-
+  
   UPP = Struct.new(:str, :dex, :end, :int, :edu, :soc) do
-    def self.generate
+    def self.roll_2
+      rand(1..6) + rand(1..6)
+    end
+    def self.generate_upp
       self.new(roll_2, roll_2, roll_2, roll_2, roll_2, roll_2)
     end
     def to_s
@@ -41,10 +44,8 @@ module CharacterTools
  
   def generate_appearence
     app = String.new
-    skin = generate_skin
-    hair = generate_hair
-    app << hair + " hair "
-    app << skin + " skin"
+    app << generate_hair + " hair, "
+    app << generate_skin + " skin"
     return app
   end
 
@@ -78,22 +79,9 @@ module CharacterTools
     return "humaniti"
   end
  
-  def self.init
-    character          = Character.new
-    character.upp      = self.upp
-    character.gender   = self.gender.capitalize
-    character.species = "humaniti"
-    options           = { "gender" => character.gender, "species" => character.species }
-    character.name     = Name.new(options).to_s
-    character.age      = 18
-    character.hair     = self.hair
-    character.skin     = self.skin
-    return character
-  end
-
-  def self.social_status(character)
-    soc = character.upp[:soc]
-    status = case soc     
+  #def self.social_status(character)
+  def social_status
+    status = case @upp[:soc]
       when 0..5   then  "other"
       when 11..15 then  "noble"
       else              "citizen"
@@ -101,10 +89,9 @@ module CharacterTools
     return status 
   end
 
-  def title(character)
-    soc = character.upp[:soc]
-    if NOBILITY.has_key?(soc)
-      return NOBILITY[soc][character.gender]
+  def title
+    if NOBILITY.has_key?(@upp[:soc])
+      return NOBILITY[@upp[:soc]][@gender]
     end
   end 
   
@@ -140,24 +127,6 @@ module CharacterTools
     end
   end
 
-  def self.add_career(char)
-    terms         = char["terms"]
-    career        = char["career"]
-    character     = char["character"]
-    character.age += terms * 4
-    character.careers[career] += terms
-  end
-
-  def self.hash_character(character)
-    c_hash = Hash.new
-    c_hash["name"]    = character.name
-    c_hash["upp"]     = character.upp
-    c_hash["age"]     = character.age
-    c_hash["careers"] = character.careers
-    c_hash["skills"]  = character.skills
-    return c_hash
-  end
-
   def get_random_line_from_file(file)
     begin 
       fname       = $DATA_PATH + "/" + file
@@ -169,7 +138,6 @@ module CharacterTools
           new_array << line
         end
       end
-      #result = new_array[rand(new_array.length - 1)]
       result = new_array.sample
     rescue SystemCallError
       raise 
