@@ -1,8 +1,8 @@
-close
+close cropped
 short
 short
-neck
-neck
-shoulder
-very
-waist
+neck length
+neck length
+shoulder length
+very long
+waist length
