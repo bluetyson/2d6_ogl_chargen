@@ -41,7 +41,14 @@ module CharacterTools
   def generate_gender
     ['M', 'F'].sample
   end
- 
+
+  def generate_traits
+    traits = Array.new
+    traits << get_random_line_from_file("positive_traits.txt")
+    traits << get_random_line_from_file("negative_traits.txt")
+    return traits
+  end 
+
   def generate_appearence
     app = String.new
     app << generate_hair + " hair, "

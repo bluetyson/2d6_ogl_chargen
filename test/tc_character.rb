@@ -128,6 +128,14 @@ class TestCharacter < Test::Unit::TestCase
     assert(@base_character.plot == plot)
   end 
 
+  def test_has_no_traits
+    assert(@base_character.traits == nil)
+  end
+
+  def test_has_traits
+    assert(@character.traits.length >= 2)
+  end
+
   def test_has_no_skills
     assert(@base_character.skills == nil)
   end

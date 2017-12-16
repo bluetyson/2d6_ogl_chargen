@@ -5,7 +5,7 @@ class Character
 
   attr_accessor :gender, :name, :upp, :skills, 
       :careers, :age, :rank, :stuff,
-      :appearence, :species, :plot, :temperament
+      :appearence, :species, :plot, :temperament, :traits
 
   def initialize(char = {})
     @char = char
@@ -21,6 +21,7 @@ class Character
     @age          = @char.fetch('age', 18)
     @plot         = @char.fetch('plot', generate_plot)
     @temperament  = @char.fetch('temperament', generate_temperament)
+    @traits       = @char.fetch('traits', generate_traits)
     @skills       = @char.fetch('skills', Hash.new(0))
     @careers      = @char.fetch('careers', Hash.new(0))
     @stuff        = @char.fetch('stuff', init_stuff)
