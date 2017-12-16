@@ -118,8 +118,8 @@ class TestCharacter < Test::Unit::TestCase
   end
 
   def test_has_plot
-    assert(@character.plot.class == String)
-    assert(@character.plot.length >= 5)
+    assert(@character.plot.class == Array)
+    assert(@character.plot.length >= 2)
   end
 
   def test_set_get_plot

@@ -16,7 +16,7 @@ module PresenterDefault
     lines[2] += "#{character.appearence.capitalize} " if character.appearence
     lines[3] =  ""
     lines[3] += "Temperament: #{character.temperament.capitalize}   " if character.temperament
-    lines[3] += "Plot: #{character.plot.capitalize} " if character.plot
+    lines[3] += "Plot: #{character.plot[0].capitalize} (#{character.plot[-1]}) " if character.plot
     lines[4] = ""
     lines[4] += "Traits: #{character.traits.map(&:capitalize).join(', ')}"
     lines[5] =  ""

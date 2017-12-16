@@ -160,7 +160,7 @@ module CharacterTools
     rescue SystemCallError
       plot = "Some drab plot"
     end
-    return plot
+    return plot, rand(1..6)
   end
 
   def generate_temperament
