@@ -9,20 +9,18 @@ db      = client.database
 
 options = {}
 parser = OptionParser.new do |opts|
-  opts.on('-c character', '--character', 'Select a character') do |c|
-    options[:character] = c
+  opts.on('-n name', '--name', 'Select a character by name') do |n|
+    options[:name] = n
   end
 end
 parser.parse!
 
-name = options[:character]
+name = options[:name]
 
 collection = client[:dragons]
 collection.find("name" => /#{name}/).each do |d|
   drag = Hash[d]
   dragon = Character.new(drag)
-  dragon.careers = {"Warder" => 1}
-  dragon.generate
   Presenter.show(dragon)
 end
 

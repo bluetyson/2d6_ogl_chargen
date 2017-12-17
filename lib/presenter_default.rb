@@ -9,8 +9,10 @@ module PresenterDefault
     lines[0] += "#{character.gender} "  if character.gender
     lines[0] += "Age: #{character.age} "   if character.age
     lines[0] += "#{character.upp_to_s} " if character.upp
-    character.careers.each_pair do |career, terms|
-      lines[0] += "#{career}: #{terms} "
+    if character.careers
+      character.careers.each_pair do |career, terms|
+        lines[0] += "#{career}: #{terms} "
+      end
     end
     lines[2] =  ""
     lines[2] += "#{character.appearence.capitalize} " if character.appearence

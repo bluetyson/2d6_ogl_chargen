@@ -9,6 +9,22 @@ class Character
 
   def initialize(char = {})
     @char = char
+    setup
+  end
+
+  def setup
+    @upp          = @char['upp']
+    @gender       = @char['gender']
+    @species      = @char['species']
+    @name         = @char['name']
+    @appearence   = @char['appearence']
+    @age          = @char['age']
+    @plot         = @char['plot']
+    @temperament  = @char['temperament']
+    @traits       = @char['traits']
+    @skills       = @char['skills']
+    @careers      = @char['careers']
+    @stuff        = @char['stuff']
   end 
 
   def generate
