@@ -1,5 +1,5 @@
 module PresenterDefault
-  
+  require 'character_tools' 
   def PresenterDefault.show(character)
     lines = Array.new
     lines[0] =  ""
@@ -8,7 +8,7 @@ module PresenterDefault
     lines[0] += "#{character.name} "  if character.name
     lines[0] += "#{character.gender} "  if character.gender
     lines[0] += "Age: #{character.age} "   if character.age
-    lines[0] += "#{character.upp.to_s} "   if character.upp
+    lines[0] += "#{character.upp_to_s} " if character.upp
     character.careers.each_pair do |career, terms|
       lines[0] += "#{career}: #{terms} "
     end

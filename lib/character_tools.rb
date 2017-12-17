@@ -21,7 +21,16 @@ module CharacterTools
   def self.roll_2
     rand(1..6) + rand(1..6)
   end
-  
+ 
+  def upp_to_s
+    my_str = ""
+    @upp.each_pair do |k, v|
+      my_str << v.to_s(16).upcase
+    end
+    return my_str
+  end
+    
+ 
   UPP = Struct.new(:str, :dex, :end, :int, :edu, :soc) do
     def self.roll_2
       rand(1..6) + rand(1..6)
