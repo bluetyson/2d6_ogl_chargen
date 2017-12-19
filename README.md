@@ -1,30 +1,34 @@
-CT_Character_Generator
-======================
+2d6 OGL Character_Generator
+===========================
 
-This provides mechanisms for creating "Classic Traveller" (LBB 1-8)
-characters. It currently uses Ruby and SQLite3, though the latter will go 
-away soon.
+This provides mechanisms for creating 2d6 OGL based characters. 
+It currently uses Ruby and SQLite3, though the latter will go away soon.
+Some of the code in the "toys" section uses MongoDB.
 
 ```
-  ruby bin/chargen.rb -h
+  ruby -Ilib bin/chargen.rb -h
   Usage: chargen [options]
     -c career                        Career, defaults based on Soc
+                   Can be used more than once for multiple careers.
     -t terms                         Terms, defaults to range of 1-5
     -b                               Create a basic character
 ```
 For example:
 ```
-  ruby bin/chargen.rb -c navy -t 4
-  Knight PO2 Marlin Underwood Male Age: 34 867A9B Navy: 4 
-  Frizzed medium blond close cropped hair black skin 
-  GunCbt-1 Leader-1 Blade-1 Carouse-1 Instruction-1 ShipTactics-1 
-  Cash: 30000 HighPsg (1) TAS (1) 
+  Marquesa PO2 Addie Potter F Age: 34 64458D Navy: 4 Noble: 1 
+  Curly medium auburn waist length hair, medium skin 
+  Temperament: Provider   Plot: Obstacles to love (2) 
+  Traits: Adaptable, Antisocial
+  Leader-1 Vehicle-1 Eng-1 Carouse-1 GunCbt-1 Carousing-1 Medical-1 
+  Cash: 118909
 ```
 RDoc files are in the doc directory. Architectures and assumptions are
 in the docs directory. Probably need to clean that up. 
 
+Many of the original ideas came from Traveller (tm) and Cepheus Engine (tm).
 [Traveller](https://en.wikipedia.org/wiki/Traveller_(role-playing_game)) 
 is a Role-Playing Game copyright [Far Future Enterprises](http://farfuture.net). 
+Cepheus Engine is released under the OGL. The name is copyrgiht Jason "Flynn" Kemp and Samardan Press.
 
 This code is copyright [Leam Hall](https://github.com/LeamHall) and 
 is open for free fair use.
