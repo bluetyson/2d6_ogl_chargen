@@ -28,10 +28,14 @@ module PresenterDefault
       end
     end
     lines[6] =  ""
-    lines[6] += "Cash: #{character.stuff["cash"]} " if character.stuff
-    #character.stuff["benefits"].each do |k,v|
-    #  lines[6] +=  "#{k} (#{v}) "
-    #end
+    if character.stuff
+      lines[6] += "Cash: #{character.stuff["cash"]} " if character.stuff["cash"]
+      if character.stuff["benefits"]
+        character.stuff["benefits"].each do |k,v|
+          lines[6] +=  "#{k} (#{v}) "
+        end
+      end
+    end
 
     lines.each do |line|
       puts line unless line.nil? || line.length == 0 
