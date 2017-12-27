@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # Base tool to create a quick NPC.
 # ruby chargen <-c career> <-t terms>
 #   career defaults based on Soc and terms to 1-5.

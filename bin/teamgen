@@ -1,10 +1,8 @@
-# TeamGen
+#!/usr/bin/env ruby
+
+# teamgen
 # Just does a small ship crew as a proof of concept.
 #
-# usage:  ruby bin/TeamGen
-
-#$LOAD_PATH << File.expand_path("../../lib/Careers", __FILE__)
-#$LOAD_PATH << File.expand_path("../../lib/Tools", __FILE__)
 
 require "character"
 require "character_tools"
