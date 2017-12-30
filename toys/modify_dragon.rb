@@ -1,7 +1,7 @@
 require 'mongo'
 
 Mongo::Logger.logger.level = Logger::WARN
-client  = Mongo::Client.new(['localhost:27017'], :database => 'dragons')
+client  = Mongo::Client.new(['localhost:27017'], :database => 'people')
 db      = client.database
 
 def upp_s_to_h(upp)
