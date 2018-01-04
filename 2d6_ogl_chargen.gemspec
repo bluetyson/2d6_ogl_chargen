@@ -1,7 +1,7 @@
 
 Gem::Specification.new do |s|
   s.name          = "2D6_OGL_CharGen".freeze
-  s.version       = "0.0.4"
+  s.version       = "0.0.5"
   s.authors       = ["Leam Hall"]
   s.email         = "leamhall@gmail.com"
   s.homepage      = "https://github.com/LeamHall/2d6_ogl_chargen"
