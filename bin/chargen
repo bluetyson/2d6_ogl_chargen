@@ -34,6 +34,8 @@ options             = Hash.new
 options["careers"]  = Hash.new
 options["terms"]    = 0
 options["number"]   = 1
+options["output"]   = 'txt'
+
 option_parser = OptionParser.new do |opts|
   opts.on("-c CAREER", "--career CAREER", "Career, defaults based on Soc.
          Can be used more than once for multiple careers.") do |c|
@@ -47,6 +49,9 @@ option_parser = OptionParser.new do |opts|
   end
   opts.on("-n NUMBER", "--number NUMBER", "Number of characters.") do |n|
     options["number"] = n.to_i
+  end
+  opts.on("-o OUTPUT", "--output OUTPUT", "Output type (txt, csv).") do |o|
+    options["output"] = o
   end
 end
 option_parser.parse!
@@ -81,5 +86,5 @@ options["number"].times do
     end
   end
 
-  Presenter.show(character)
+  Presenter.show(character, options["output"])
 end
