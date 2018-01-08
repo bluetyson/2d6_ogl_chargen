@@ -2,7 +2,7 @@
 class Name
 
   PROJECT_PATH = File.expand_path(File.dirname(__FILE__))
-  DATA_PATH = File.join(PROJECT_PATH, "../../data")
+  DATA_PATH = File.join(PROJECT_PATH, "../data")
   
   attr_reader :name
 
@@ -37,7 +37,7 @@ class Name
       first_name_query = db.prepare "SELECT * from humaniti_#{gender}_first ORDER BY RANDOM() LIMIT 1"
       first_name_result = first_name_query.execute
       first_name = first_name_result.first
-    rescue
+    rescue NameError
       namefile    = "data/#{@species}_#{gender}_firstnames"
       name = name_from_file(namefile)
       return name
@@ -55,7 +55,7 @@ class Name
       name_file.each do |line|
         name_array << line.chomp
       end
-      name        = name_array[rand(name_array.length - 1)]
+      name        = name_array.sample
     else
       name = "Fred"
     end
