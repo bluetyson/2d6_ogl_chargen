@@ -59,6 +59,7 @@ class Name
     else
       name = "Fred"
     end
+    return name
   end
 
   # Pulls a last name from the database. In the future based on culture. 
@@ -70,15 +71,14 @@ class Name
       last_name_query = db.prepare "SELECT * from humaniti_last ORDER BY RANDOM() LIMIT 1"
       last_name_result = last_name_query.execute
       last_name = last_name_result.first
+      return last_name[0].to_s
     rescue
       namefile    = "data/#{@species}_lastnames"
-      name = name_from_file(namefile)
-      return name
+      name_from_file(namefile)
     ensure
       last_name_query.close if last_name_query
       db.close if db
     end
-    return last_name[0].to_s
   end
 
   # Needs gender, produces first and last name as a single string.
@@ -89,6 +89,6 @@ class Name
   end
 
   def to_s
-    return @name
+    @name
   end
 end

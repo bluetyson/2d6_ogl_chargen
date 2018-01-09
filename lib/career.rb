@@ -49,9 +49,9 @@ class Career
 
   def build_skill_options(character)
     if character.upp[4].chr.to_i(16) >= 8
-      skill_options = @skill_options + @advanced_skill_options
+      @skill_options + @advanced_skill_options
     else
-      skill_options = @skill_options
+      @skill_options
     end
   end
 
