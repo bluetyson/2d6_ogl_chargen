@@ -1,0 +1,8 @@
+
+
+Bhargava, Aditya, "Grokking Algorithms"
+Binder, Robert, "Testing Object-Oriented Systems"
+Booch, Grady, "Object-Oriented Analysis and Design with Applications (2nd ed)"
+Metz, Sandi, "99 Bottles of OOP"
+Metz, Sandi, "Practical Object-Oriented Design in Ruby"
+
