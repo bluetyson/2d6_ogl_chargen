@@ -97,7 +97,6 @@ module CharacterTools
     return "humaniti"
   end
  
-  #def self.social_status(character)
   def social_status
     status = case @upp[:soc]
       when 0..5   then  "other"
@@ -146,6 +145,8 @@ module CharacterTools
   end
 
   def array_from_file(file)
+    # Still need to work on this. 
+    # Block the tracebacks if possible.
     fname       = $DATA_PATH + "/" + file
     raise MissingFile.new("No #{fname} file, sorry.") unless File.readable?(fname)
     new_file    = File.open(fname, "r")
@@ -161,8 +162,10 @@ module CharacterTools
   end
 
   def get_random_line_from_file(file)
+    # Still need to work on this. 
+    # Block the tracebacks if possible.
+    fname       = $DATA_PATH + "/" + file
     begin 
-      fname       = $DATA_PATH + "/" + file
       new_file    = File.open(fname, "r")
       new_array   = Array.new
       new_file.each do |line|
@@ -171,22 +174,20 @@ module CharacterTools
           new_array << line
         end
       end
-      result = new_array.sample
-    rescue SystemCallError
-      raise 
+      return new_array.sample
+    rescue IOError
+      raise MissingFile.new("No #{fname} file, sorry.")
     ensure
       new_file.close() unless new_file.nil?
     end
-    return result
   end
 
   def generate_plot
     begin
-      plot = get_random_line_from_file("plots.txt")
+      return get_random_line_from_file("plots.txt"), rand(1..6)
     rescue SystemCallError
-      plot = "Some drab plot"
+      return "Some drab plot", rand(1..6)
     end
-    return plot, rand(1..6)
   end
 
   def generate_temperament
