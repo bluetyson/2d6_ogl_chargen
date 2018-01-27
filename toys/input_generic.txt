@@ -1,0 +1,7 @@
+      "Leader",
+      "Admin",
+      "Liaison",
+      "Bribery",
+      "JoT",
+      "Computer"
+
