@@ -4,12 +4,12 @@
 # chargen <-c career> <-t terms> <-n number of character> <-b>
 #   career defaults based on Soc and terms to 1-5.
 
-require "optparse"
-require "character_tools"
-require "character"
-require "presenter"
+require 'optparse'
+require 'character_tools'
+require 'character'
+require 'presenter'
 
-$LOAD_PATH << File.expand_path("../../lib/careers", __FILE__)
+$LOAD_PATH << File.expand_path('../../lib/careers', __FILE__)
 
 def list_careers(career_dir)
   careers = Array.new
@@ -25,55 +25,53 @@ basic_character = false
 available_careers = []
 load_dirs = $LOAD_PATH.uniq
 load_dirs.each do |dir|
-  if dir.end_with?("careers")
-    available_careers = list_careers(dir)
-  end
+  available_careers = list_careers(dir) if dir.end_with?('careers')
 end
 
 options             = Hash.new
-options["careers"]  = Hash.new
-options["terms"]    = 0
-options["number"]   = 1
-options["output"]   = 'txt'
+options['careers']  = Hash.new
+options['terms']    = 0
+options['number']   = 1
+options['output']   = 'txt'
 
 option_parser = OptionParser.new do |opts|
-  opts.on("-c CAREER", "--career CAREER", "Career, defaults based on Soc.
-         Can be used more than once for multiple careers.") do |c|
-    options["careers"][c] = 0 if available_careers.include?(c)
+  opts.on('-c CAREER', '--career CAREER', 'Career, defaults based on Soc.
+         Can be used more than once for multiple careers.') do |c|
+    options['careers'][c] = 0 if available_careers.include?(c)
   end
-  opts.on("-t TERMS", "--terms TERMS", "Terms, defaults to range of 1-5") do |t|
-    options["terms"] = t.to_i
+  opts.on('-t TERMS', '--terms TERMS', 'Terms, defaults to range of 1-5') do |t|
+    options['terms'] = t.to_i
   end
-  opts.on("-b", "--basic", "Just a basic Character") do
+  opts.on('-b', '--basic', 'Just a basic Character') do
     basic_character = true
   end
-  opts.on("-n NUMBER", "--number NUMBER", "Number of characters.") do |n|
-    options["number"] = n.to_i
+  opts.on('-n NUMBER', '--number NUMBER', 'Number of characters.') do |n|
+    options['number'] = n.to_i
   end
-  opts.on("-o OUTPUT", "--output OUTPUT", "Output type (txt, csv).") do |o|
-    options["output"] = o
+  opts.on('-o OUTPUT', '--output OUTPUT', 'Output type (txt, csv).') do |o|
+    options['output'] = o
   end
 end
 option_parser.parse!
 
-options["number"].times do 
+options['number'].times do
   character = Character.new
   character.generate
   terms     = 0
   careers   = Hash.new
 
-  if options["terms"] == 0
-    srand && terms = rand(5) + 1
+  if options['terms'].zero?
+    srand && terms = rand(1..5)
   else
-    terms = Integer(options["terms"])
+    terms = Integer(options['terms'])
   end
 
   unless basic_character
-    options["careers"].each_key do |career|
+    options['careers'].each_key do |career|
       careers[career] = terms
     end
     social_career     = character.social_status
-    if options["careers"].key?(social_career) or careers.count == 0
+    if options['careers'].key?(social_career) or careers.count.zero?
       careers[social_career] = terms
     else
       careers[social_career] = 1
@@ -86,5 +84,5 @@ options["number"].times do
     end
   end
 
-  Presenter.show(character, options["output"])
+  Presenter.show(character, options['output'])
 end

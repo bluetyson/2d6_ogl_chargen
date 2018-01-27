@@ -1,6 +1,9 @@
 # Command line to run:
 # rubocop -c rubocop/rubocop.yml -D -o rubocop/Chargen.out bin/Chargen
 
+Style/AndOr:
+  Enabled: false
+
 Style/StringLiterals:
   Enabled: false
 
