@@ -1,10 +1,12 @@
 # CharacterTools implements modules for modifying Character objects.
 # These methods are outside career data sets.
 
+
 module CharacterTools
 
   $DATA_PATH  = File.expand_path("../../data", __FILE__)
-  require "name"
+  require 'name'
+  require 'errors'
 
   NOBILITY = {
     11 => { "F" => "Dame",     "M" => "Knight" },
@@ -145,16 +147,16 @@ module CharacterTools
 
   def array_from_file(file)
     fname       = $DATA_PATH + "/" + file
-    if File.exist?(fname)
-      new_file    = File.open(fname, "r")
-      new_array   = Array.new
-      new_file.each do |line|
-        line.chomp!
-        if line !~ /#/ and line.length > 4
-          new_array << line
-        end
+    raise MissingFile.new("No #{fname} file, sorry.") unless File.readable?(fname)
+    new_file    = File.open(fname, "r")
+    new_array   = Array.new
+    new_file.each do |line|
+      line.chomp!
+      if line !~ /#/ and line.length > 4
+        new_array << line
       end
     end
+    new_file.close()
     return new_array
   end
 

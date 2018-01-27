@@ -1,0 +1,3 @@
+class MissingFile < IOError
+end
+
