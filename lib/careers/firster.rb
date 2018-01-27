@@ -3,39 +3,11 @@ require "career"
 
 class Firster < Career 
   def initialize  
-    @skill_options = [ 
-      "+1 Str",
-      "+1 Dex",
-      "+1 End", 
-      "+1 Int", 
-      "Carouse", 
-      "Brawling", 
-      "GunCbt", 
-      "Blade", 
-      "Recon", 
-      "Survival", 
-      "Vehicle",
-      "Bribery", 
-      "Leader"
-      ]
-    @advanced_skill_options = [
-      "Medic",
-      "Engineering", 
-      "Gunnery", 
-      "Computer",
-      "Admin",
-      "Liaison",
-      "Leader",
-      "JoT"
-      ]
-
+    @skill_options = array_from_file('firster_base_skills.txt')
+    @advanced_skill_options = array_from_file('firster_advanced_skills.txt')
     @muster_out_benefits = Hash.new
     @muster_out_benefits["cash"] = [10000, 200000]
-    @muster_out_benefits["benefits"] = [
-      "Gun",
-      "Blade",
-      "Vehicle"
-    ] 
+    @muster_out_benefits["benefits"] = array_from_file('firster_muster_stuff.txt')
   end
 
   def first_term(char)
