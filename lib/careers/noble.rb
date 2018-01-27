@@ -8,45 +8,12 @@ require "career"
 
 class Noble < Career 
   def initialize
-    @skill_options = [ 
-      "+1 Int", 
-      "+1 Edu", 
-      "Carousing", 
-      "JoT",
-      "Leader",
-      "Brawling",
-      "Hunting",
-      "Pilot",
-      "Leader",
-      "GunCbt",
-      "Vehicle",
-      "Medical",
-      "Leader",
-      "Admin",
-      "Carousing",
-      "Liaison",
-      "Bribery",
-      "Gabmling"
-      ]
-    @advanced_skill_options = [
-      "Leader",
-      "Admin",
-      "Liaison",
-      "Bribery",
-      "JoT",
-      "Computer"
-      ]
+    @skill_options  = array_from_file('noble_base_skills.txt')
+    @advanced_skill_options = array_from_file('noble_advanced_skills.txt')
 
     @muster_out_benefits = Hash.new
     @muster_out_benefits["cash"] = [10000, 200000]
-    @muster_out_benefits["benefits"] = [
-      "HighPsg",
-      "HighPsg",
-      "Gun",
-      "Blade",
-      "TAS",
-      "Yacht"
-    ] 
+    @muster_out_benefits["benefits"] = array_from_file('noble_muster_stuff.txt')
   end
 
   def rank(character)

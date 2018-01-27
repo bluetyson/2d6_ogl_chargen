@@ -13,9 +13,7 @@ GunCbt
 Vehicle
 Medical
 Leader
-Admin
 Carousing
 Liaison
 Bribery
-Gabmling
-
+Gambling

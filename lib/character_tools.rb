@@ -143,6 +143,21 @@ module CharacterTools
     end
   end
 
+  def array_from_file(file)
+    fname       = $DATA_PATH + "/" + file
+    if File.exist?(fname)
+      new_file    = File.open(fname, "r")
+      new_array   = Array.new
+      new_file.each do |line|
+        line.chomp!
+        if line !~ /#/ and line.length > 4
+          new_array << line
+        end
+      end
+    end
+    return new_array
+  end
+
   def get_random_line_from_file(file)
     begin 
       fname       = $DATA_PATH + "/" + file

@@ -1,7 +1,8 @@
-      "Leader",
-      "Admin",
-      "Liaison",
-      "Bribery",
-      "JoT",
-      "Computer"
+# noble_muster_stuff
+      "HighPsg",
+      "HighPsg",
+      "Gun",
+      "Blade",
+      "TAS",
+      "Yacht"
 
