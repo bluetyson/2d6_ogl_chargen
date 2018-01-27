@@ -6,45 +6,11 @@ require "career"
 class Citizen < Career
   
   def initialize
-  @skill_options = [ 
-    "+1 Str",
-    "+1 Dex",
-    "+1 Edu", 
-    "+1 Int", 
-    "Carouse", 
-    "Brawling", 
-    "Mechanical",
-    "Vehicle",  
-    "Streetwise",
-    "Bribery",
-    "Gambling",
-    "Blade",
-    "Steward",
-    "Electronics",
-    "Medical",
-    "Computer",
-    "Admin",
-    "+1 Soc"
-    ]
-  @advanced_skill_options = [
-    "Medic",
-    "Computer",
-    "Admin",
-    "Liaison",
-    "Leader",
-    "Electronics",
-    "JoT"
-    ]
-
+  @skill_options = array_from_file('citizen_base_skills.txt') 
+  @advanced_skill_options = array_from_file('citizen_advanced_skills.txt')
   @muster_out_benefits = Hash.new
   @muster_out_benefits["cash"] = [ 1000, 9000 ]
-  @muster_out_benefits["benefits"] = [
-    "Low Passage",
-    "Blade",
-    "+1 Int",
-    "+2 Edu",
-    "Gun",
-    "Middle Passage"
-    ]
+  @muster_out_benefits["benefits"] = array_from_file('citizen_muster_stuff.txt')
+    
   end
 end

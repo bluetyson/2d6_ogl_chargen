@@ -1,8 +1,20 @@
-# noble_muster_stuff
-      "HighPsg",
-      "HighPsg",
-      "Gun",
-      "Blade",
-      "TAS",
-      "Yacht"
+# citizen_base_skills
+    "+1 Str",
+    "+1 Dex",
+    "+1 Edu", 
+    "+1 Int", 
+    "Carouse", 
+    "Brawling", 
+    "Mechanical",
+    "Vehicle",  
+    "Streetwise",
+    "Bribery",
+    "Gambling",
+    "Blade",
+    "Steward",
+    "Electronics",
+    "Medical",
+    "Computer",
+    "Admin",
+    "+1 Soc"
 
