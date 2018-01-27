@@ -4,9 +4,9 @@
 # Just does a small ship crew as a proof of concept.
 #
 
-require "character"
-require "character_tools"
-require "presenter"
+require 'character'
+require 'character_tools'
+require 'presenter'
 
 def list_careers(career_dir)
   careers = Array.new
@@ -17,30 +17,26 @@ def list_careers(career_dir)
   careers
 end
 
-
 available_careers = []
 load_dirs = $LOAD_PATH.uniq
 load_dirs.each do |dir|
-  if dir.end_with?("careers")
-    available_careers = list_careers(dir)
-  end
+  available_careers = list_careers(dir) if dir.end_with?('careers')
 end
 
-
-roles = Hash("Pilot" => "Pilot", "Gunner" => "Gunnery", "Engineer" => "Eng")
+roles = Hash('Pilot' => 'Pilot', 'Gunner' => 'Gunnery', 'Engineer' => 'Eng')
 
 roles.each_key do |role|
-  terms = rand(4) + 1
+  terms = rand(1..4)
   puts "== #{role} =="
-  career = "Navy"
+  career = 'Navy'
   require File.join('careers', career.downcase)
   this_career = Module.const_get(career).new
   character = Character.new
   character.generate
   character.run_career(this_career, terms)
   options = Hash.new
-  options["character"]  = character
-  options["skill"]      = roles[role]
+  options['character']  = character
+  options['skill']      = roles[role]
   character.increase_skill(options)
   Presenter.show(character)
 end
