@@ -25,9 +25,12 @@ module CharacterTools
   end
  
   def upp_to_s(upp)
-    my_str = ""
+    my_str  = ""
+    counter = 1
     upp.each_pair do |k, v|
+      my_str << '-' if counter == 7 
       my_str << v.to_s(16).upcase
+      counter += 1
     end
     return my_str
   end
