@@ -24,9 +24,9 @@ module CharacterTools
     rand(1..6) + rand(1..6)
   end
  
-  def upp_to_s
+  def upp_to_s(upp)
     my_str = ""
-    @upp.each_pair do |k, v|
+    upp.each_pair do |k, v|
       my_str << v.to_s(16).upcase
     end
     return my_str
