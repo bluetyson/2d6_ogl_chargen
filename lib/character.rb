@@ -28,7 +28,7 @@ class Character
   end 
 
   def generate
-    @upp          = @char.fetch('upp', UPP::generate_upp)
+    @upp          = @char.fetch('upp', generate_upp)
     @gender       = @char.fetch('gender', generate_gender)
     @species      = @char.fetch('species', generate_species)
     @opts         = {'gender' => @gender, 'species' => @species}

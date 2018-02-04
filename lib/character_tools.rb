@@ -50,22 +50,6 @@ module CharacterTools
     return upp
   end
 
-  UPP = Struct.new(:str, :dex, :end, :int, :edu, :soc) do
-    def self.roll_2
-      rand(1..6) + rand(1..6)
-    end
-    def self.generate_upp
-      self.new(roll_2, roll_2, roll_2, roll_2, roll_2, roll_2)
-    end
-    def to_s
-      my_str = ""
-      self.each do |v|
-        my_str << v.to_s(16).upcase
-      end
-      return my_str
-    end
-  end 
-        
   def generate_gender
     ['M', 'F'].sample
   end
