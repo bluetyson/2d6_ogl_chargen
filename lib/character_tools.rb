@@ -31,7 +31,11 @@ module CharacterTools
     end
     return my_str
   end
-    
+
+  #def run_career(career, terms)
+  #  career.update_character(self, career, terms)
+  #end
+        
  
   UPP = Struct.new(:str, :dex, :end, :int, :edu, :soc) do
     def self.roll_2
@@ -107,8 +111,9 @@ module CharacterTools
   end
 
   def title
-    if NOBILITY.has_key?(@upp[:soc])
-      return NOBILITY[@upp[:soc]][@gender]
+    soc = @upp[:soc].to_i
+    if NOBILITY.has_key?(soc)
+      return NOBILITY[soc][@gender]
     end
   end 
   

@@ -1,7 +1,7 @@
 $LOAD_PATH << File.expand_path("../../lib/Tools", __FILE__)
 
-require "Character"
-require "CharacterTools"
+require "character"
+require "character_tools"
 require "test/unit"
 require "pp"
 
@@ -27,14 +27,14 @@ class TestCharacterTools < Test::Unit::TestCase
     assert(@character.appearence.match(/skin/))
   end
 
-  def test_add_career
+  def test_run_career
     terms = 2
     career = "Scout"
     @char = { 
       'character' => @character, 
       'career' => career, 
       'terms' => terms} 
-    CharacterTools.add_career(@char)
+    CharacterTools.run_career(@char)
     assert(@character.age == 18 + (terms * 4))
     assert(@character.careers.has_key?(career))
     assert(@character.careers[career] == terms)
@@ -59,14 +59,14 @@ class TestCharacterTools < Test::Unit::TestCase
       'character' => @character, 
       'career' => career1, 
       'terms' => terms1} 
-    CharacterTools.add_career(@char)
+    CharacterTools.run_career(@char)
     terms2 = 1
     career2 = "Merchant"
     @char2 = { 
       'character' => @character, 
       'career' => career2, 
       'terms' => terms2} 
-    CharacterTools.add_career(@char2)
+    CharacterTools.run_career(@char2)
     assert(@character.age == 18 + ((terms1 + terms2) * 4))
     assert(@character.careers.has_key?(career1))
     assert(@character.careers[career1] == terms1)
@@ -105,6 +105,8 @@ class TestCharacterTools < Test::Unit::TestCase
     @character.upp = "77777B"
     @character.gender = "M"
     #@character.title = CharacterTools.get_title(@character)
+    puts @character.title.class
+    exit
     assert(@character.title == "Knight")
   end
 
