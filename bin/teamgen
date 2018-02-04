@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+$LOAD_PATH << File.expand_path("../../lib", __FILE__)
 
 # teamgen
 # Just does a small ship crew as a proof of concept.

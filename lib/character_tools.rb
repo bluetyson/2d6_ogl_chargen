@@ -20,11 +20,15 @@ module CharacterTools
     rand(1..6)
   end
 
-  def self.roll_2
-    rand(1..6) + rand(1..6)
+  def roll_2
+    roll_1 + roll_1
   end
- 
-  def upp_to_s(upp)
+
+  def roll_66
+    roll_1.to_s + roll_1.to_s
+  end 
+
+  def upp_to_s(upp = @upp)
     my_str  = ""
     counter = 1
     upp.each_pair do |k, v|
@@ -35,11 +39,17 @@ module CharacterTools
     return my_str
   end
 
-  #def run_career(career, terms)
-  #  career.update_character(self, career, terms)
-  #end
-        
- 
+  def generate_upp
+    upp = Hash.new(0)
+    upp[:str] = roll_2
+    upp[:dex] = roll_2
+    upp[:end] = roll_2
+    upp[:int] = roll_2
+    upp[:edu] = roll_2
+    upp[:soc] = roll_2
+    return upp
+  end
+
   UPP = Struct.new(:str, :dex, :end, :int, :edu, :soc) do
     def self.roll_2
       rand(1..6) + rand(1..6)

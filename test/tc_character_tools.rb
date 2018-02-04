@@ -18,4 +18,9 @@ class TestCharacterTools < Test::Unit::TestCase
     assert(upp_to_s(upp) == "A72ECC-7")
   end
 
+  def test_generate_upp
+    upp = generate_upp
+    upp_s = upp_to_s(upp)
+    assert(upp_s.match(/[2-9A-F]{6}/))
+  end
 end
