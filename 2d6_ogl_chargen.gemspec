@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.platform      = Gem::Platform::RUBY
   s.summary       = "Generates 2d6 OGL Characters."
   s.description   = "Career based progression."
-  s.files         = Dir.glob("{bin,data,docs,lib,test,toys}/**/*")
+  s.files         = Dir.glob("{bin,data,docs,lib}/**/*")
   s.has_rdoc      = false
   s.require_paths = ["lib", "lib/tools", "lib/careers"]
   s.add_runtime_dependency 'sqlite3', '>= 0'
