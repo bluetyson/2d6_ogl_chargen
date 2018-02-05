@@ -58,14 +58,12 @@ module CharacterTools
     traits = Array.new
     traits << get_random_line_from_file("positive_traits.txt")
     traits << get_random_line_from_file("negative_traits.txt")
-    return traits
   end 
 
   def generate_appearence
     app = String.new
     app << generate_hair + " hair, "
     app << generate_skin + " skin"
-    return app
   end
 
   def generate_hair
@@ -87,7 +85,7 @@ module CharacterTools
     rescue SystemCallError
       skin_tone = "medium"
     end
-    return skin_tone 
+    return skin_tone
   end
   
   def generate_name(options)
@@ -98,8 +96,8 @@ module CharacterTools
     return "humaniti"
   end
  
-  def social_status
-    status = case @upp[:soc]
+  def social_status( upp = @upp)
+    status = case upp[:soc]
       when 0..5   then  "other"
       when 11..15 then  "noble"
       else              "citizen"
@@ -107,10 +105,10 @@ module CharacterTools
     return status 
   end
 
-  def title
-    soc = @upp[:soc].to_i
+  def title( upp = @upp, gender = @gender)
+    soc = upp[:soc]
     if NOBILITY.has_key?(soc)
-      return NOBILITY[soc][@gender]
+      return NOBILITY[soc][gender]
     end
   end 
   
