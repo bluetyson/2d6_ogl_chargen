@@ -25,7 +25,8 @@ module CharacterTools
   end
 
   def roll_66
-    roll_1.to_s + roll_1.to_s
+    roll = roll_1.to_s + roll_1.to_s
+    return roll.to_i
   end 
 
   def upp_to_s(upp = @upp)
@@ -111,7 +112,22 @@ module CharacterTools
       return NOBILITY[soc][gender]
     end
   end 
-  
+ 
+  def roll_several(num = 1, dice = 2)
+    rolls = Array.new
+    num.times {
+      case dice
+        when 1
+          rolls << roll_1
+        when 2
+          rolls << roll_2
+        when 66
+          rolls << roll_66
+      end
+    }
+    return rolls
+  end
+ 
   def increase_skill(options)
     character = options["character"]
     skill     = options["skill"] 

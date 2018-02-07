@@ -30,13 +30,15 @@ class TestCharacterTools < Test::Unit::TestCase
   end
 
   def test_roll_66
-    rolls = Array.new
-    1000.times do
-      rolls << roll_66
-    end
-    rolls.each { |r|
-      assert(r.match(/[1-6]{2}/))
-      assert(r.class == String)
+    roll_options = [ 
+      11, 12, 13, 14, 15, 16,
+      21, 22, 23, 24, 25, 26,
+      31, 32, 33, 34, 35, 36, 
+      41, 42, 43, 44, 45, 46,
+      51, 52, 53, 54, 55, 56,
+      61, 62, 63, 64, 65, 66 ]
+    1000.times { 
+      assert(roll_options.include?(roll_66))
     }
   end
 
@@ -121,5 +123,35 @@ class TestCharacterTools < Test::Unit::TestCase
     upp  = {:soc => 15}
     assert(social_status(upp) == 'noble')
   end
- 
+
+  def test_roll_several_2d6
+    rolls = roll_several(3, 2) 
+    assert(rolls.class  == Array)
+    assert(rolls.length == 3)
+    rolls.each { |r|
+      assert(r >= 2)
+      assert(r <= 12)
+    }
+  end
+  
+  def test_roll_several_1d6
+    rolls = roll_several(3, 1) 
+    assert(rolls.class  == Array)
+    assert(rolls.length == 3)
+    rolls.each { |r|
+      assert(r >= 1)
+      assert(r <= 6)
+    }
+  end
+
+  def test_roll_several_d66
+    rolls = roll_several(3, 66) 
+    assert(rolls.class  == Array)
+    assert(rolls.length == 3)
+    rolls.each { |r|
+      assert(r >= 11)
+      assert(r <= 66)
+    }
+  end
+
 end
