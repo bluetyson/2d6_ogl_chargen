@@ -1,3 +1,5 @@
+$LOAD_PATH << File.expand_path('../../lib', __FILE__)
+
 require 'mongo'
 require 'character'
 require 'presenter'
@@ -17,12 +19,13 @@ parser.parse!
 
 name = options[:name]
 
-#collection = client[:dragons]
-#char = collection.find_one()
-#puts(char)
 collection = db[:dragons]
 collection.find("name" => /#{name}/).each do |d|
   drag = Hash[d]
   dragon = Character.new(drag)
   Presenter.show(dragon)
+  [ :str, :dex, :end, :int, :edu, :soc].each { |stat|
+    s = stat.to_s
+    puts "#{s.capitalize} mod is #{dragon.upp_mod(dragon.upp, stat)}."
+  }
 end
