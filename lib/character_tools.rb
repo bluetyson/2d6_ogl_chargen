@@ -40,6 +40,15 @@ module CharacterTools
     return my_str
   end
 
+  def upp_mod(upp, stat)
+    case upp[stat]
+      when 15
+        3
+      else
+        0
+    end
+  end
+
   def generate_upp
     upp = Hash.new(0)
     upp[:str] = roll_2
