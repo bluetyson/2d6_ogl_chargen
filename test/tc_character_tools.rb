@@ -154,16 +154,28 @@ class TestCharacterTools < Test::Unit::TestCase
     }
   end
 
+  def test_upp_mod_high
+    upp   = {:str => 7, :dex => 7, :end => 7, 
+      :int => 15, :edu => 7, :soc => 7}
+    assert(upp_mod(upp, :int) == 3)
+  end 
+
+  def test_upp_mod_med_high
+    upp   = {:str => 7, :dex => 7, :end => 7, 
+      :int => 13, :edu => 7, :soc => 7}
+    assert(upp_mod(upp, :int) == 2)
+  end 
+
   def test_upp_mod_average
     upp   = {:str => 7, :dex => 7, :end => 7, 
       :int => 7, :edu => 7, :soc => 7}
     assert(upp_mod(upp, :int) == 0)
   end 
 
-  def test_upp_mod_high
+  def test_upp_mod_med_low
     upp   = {:str => 7, :dex => 7, :end => 7, 
-      :int => 15, :edu => 7, :soc => 7}
-    assert(upp_mod(upp, :int) == 3)
+      :int => 4, :edu => 7, :soc => 7}
+    assert(upp_mod(upp, :int) == -1)
   end 
 
 end

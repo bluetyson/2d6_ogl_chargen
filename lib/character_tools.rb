@@ -44,6 +44,14 @@ module CharacterTools
     case upp[stat]
       when 15
         3
+      when 13..14
+        2
+      when 10..12
+        1
+      when 3..5
+        -1
+      when 1..2
+        -2
       else
         0
     end
