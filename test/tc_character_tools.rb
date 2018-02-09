@@ -180,7 +180,7 @@ class TestCharacterTools < Test::Unit::TestCase
 
   def test_upp_mod_very_low
     upp   = {:str => 7, :dex => 7, :end => 7, 
-      :int => 2 :edu => 7, :soc => 7}
+      :int => 2, :edu => 7, :soc => 7}
     assert(upp_mod(upp, :int) == -2)
   end 
 
