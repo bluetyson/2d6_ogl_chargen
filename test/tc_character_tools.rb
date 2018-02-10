@@ -184,4 +184,11 @@ class TestCharacterTools < Test::Unit::TestCase
     assert(upp_mod(upp, :int) == -2)
   end 
 
+  def test_upp_s_to_h
+    upp_s = 'ABC789'
+    upp_h = upp_s_to_h(upp_s)
+    assert(upp_h.class == Hash)
+    assert(upp_h[:end] == 12)
+  end
+
 end

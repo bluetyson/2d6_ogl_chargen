@@ -68,6 +68,18 @@ module CharacterTools
     return upp
   end
 
+  def upp_s_to_h(upp_s)
+    upp_a       = upp_s.split('')
+    upp_h       = Hash.new
+    upp_h[:str] = upp_a[0].to_i(16)
+    upp_h[:dex] = upp_a[1].to_i(16)
+    upp_h[:end] = upp_a[2].to_i(16)
+    upp_h[:int] = upp_a[3].to_i(16)
+    upp_h[:edu] = upp_a[4].to_i(16)
+    upp_h[:soc] = upp_a[5].to_i(16)
+    return upp_h
+  end
+
   def generate_gender
     ['M', 'F'].sample
   end
