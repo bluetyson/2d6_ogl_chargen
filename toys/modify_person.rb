@@ -10,23 +10,11 @@ Mongo::Logger.logger.level = Logger::WARN
 client      = Mongo::Client.new(['localhost:27017'], :database => 'people')
 collection  = client[:people]
 
-def upp_s_to_h(upp)
-  upp_a = upp.split('')
-  upp_h = Hash.new
-  upp_h[:str] = upp_a[0].to_i(16)
-  upp_h[:dex] = upp_a[1].to_i(16)
-  upp_h[:end] = upp_a[2].to_i(16)
-  upp_h[:int] = upp_a[3].to_i(16)
-  upp_h[:edu] = upp_a[4].to_i(16)
-  upp_h[:soc] = upp_a[5].to_i(16)
-  return upp_h
-end
-
-=begin 
 def update_target(data)
-  person    = data['person']
-  modify    = data['modify']
-  new_data  = data['new_data']
+  collection  = data['coll']
+  person      = data['person']
+  modify      = data['modify']
+  new_data    = data['new_data']
 
   collection.update_one({"_id" => person['_id']}, 
     {"$set" => 
@@ -39,7 +27,6 @@ def update_target(data)
       }
     })
 end
-=end
 
 collection.find({'background': /Oregund gang/}).each do |person|
   #terms = (dragon['age'] - 18) / 4
@@ -53,7 +40,12 @@ collection.find({'background': /Oregund gang/}).each do |person|
   age     = person['age'].to_i
   morale  = ((age - 12) / 2) + 6
   unless person['morale']
-    puts("#{name}, morale #{morale}") 
+    p_data              = Hash.new
+    p_data['coll']      = collection
+    p_data['person']    = person
+    p_data['modify']    = 'morale'
+    p_data['new_data']  = morale
+    update_target(p_data) 
   end
 end
  
