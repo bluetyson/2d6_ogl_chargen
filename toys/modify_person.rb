@@ -25,15 +25,15 @@ def update_target(data)
 end
 
 collection.find({'background': /Oregund gang/}).each do |person|
-  name    = person['name']
-  age     = person['age'].to_i
-  morale  = ((age - 12) / 2) + 6
   unless person['morale']
-    p_data              = Hash.new
-    p_data['coll']      = collection
-    p_data['person']    = person
-    p_data['modify']    = 'morale'
-    p_data['new_data']  = morale
+    cash     = 250,
+    benefits = Array.new,
+    p_data  = { 
+      'coll'      => collection,
+      'person'    => person,
+      'modify'    => 'stuff',
+      'new_data'  => [cash, benefits]
+    }
     update_target(p_data) 
   end
 end
