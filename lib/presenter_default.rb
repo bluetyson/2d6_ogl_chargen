@@ -34,6 +34,9 @@ module PresenterDefault
     end
     line_counter        += 1
     lines[line_counter] =  ""
+    lines[line_counter] += "Morale: #{character.morale}" if character.morale
+    line_counter        += 1
+    lines[line_counter] =  ""
     if character.stuff
       lines[line_counter] += "Cash: #{character.stuff["cash"]} " if character.stuff["cash"]
       if character.stuff["benefits"]

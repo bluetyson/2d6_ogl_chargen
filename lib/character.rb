@@ -4,7 +4,7 @@ class Character
   include CharacterTools
 
   attr_accessor :gender, :name, :upp, :skills, 
-      :careers, :age, :rank, :stuff,
+      :careers, :age, :rank, :stuff, :morale,
       :appearence, :species, :plot, :temperament, :traits
 
   def initialize(char = {})
@@ -25,6 +25,7 @@ class Character
     @skills       = @char['skills']
     @careers      = @char['careers']
     @stuff        = @char['stuff']
+    @morale       = @char['morale']
   end 
 
   def generate
