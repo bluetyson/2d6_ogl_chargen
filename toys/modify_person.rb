@@ -37,13 +37,6 @@ collection.find({'background': /Oregund gang/}).each do |person|
       'new_data'  => stuff
     }
     update_target(p_data) 
-=begin
-    p_data  = Hash.new 
-    p_data['coll']      = collection
-    p_data['person']    = person
-    p_data['modify']    = 'stuff'
-    p_data['new_data']  = ['cash', 'benefits']
-=end
   end 
 end
  
