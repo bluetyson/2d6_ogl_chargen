@@ -25,17 +25,26 @@ def update_target(data)
 end
 
 collection.find({'background': /Oregund gang/}).each do |person|
-  unless person['morale']
-    cash     = 250,
-    benefits = Array.new,
+  unless person['stuff2']
+    stuff   = {
+      'cash'      => 250,
+      'benefits'  => ['Gun', 'Uniform']
+    }
     p_data  = { 
       'coll'      => collection,
       'person'    => person,
       'modify'    => 'stuff',
-      'new_data'  => [cash, benefits]
+      'new_data'  => stuff
     }
     update_target(p_data) 
-  end
+=begin
+    p_data  = Hash.new 
+    p_data['coll']      = collection
+    p_data['person']    = person
+    p_data['modify']    = 'stuff'
+    p_data['new_data']  = ['cash', 'benefits']
+=end
+  end 
 end
  
 client.close()

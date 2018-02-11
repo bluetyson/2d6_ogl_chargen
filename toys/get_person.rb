@@ -1,3 +1,6 @@
+
+$LOAD_PATH << File.expand_path('../../lib/', __FILE__)
+
 require 'mongo'
 require 'character'
 require 'presenter'
