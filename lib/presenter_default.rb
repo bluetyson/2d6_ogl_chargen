@@ -1,38 +1,44 @@
 module PresenterDefault
   require 'character_tools' 
   def PresenterDefault.show(character)
+    line_counter  = 0
     lines = Array.new
-    lines[0] =  ""
-    lines[0] += "#{character.title} " if character.noble?
-    lines[0] += "#{character.rank} "  if character.rank
-    lines[0] += "#{character.name} "  if character.name
-    lines[0] += "#{character.gender} "  if character.gender
-    lines[0] += "Age: #{character.age} "   if character.age
-    lines[0] += "#{character.upp_to_s} " if character.upp
+    lines[line_counter] =  ""
+    lines[line_counter] += "#{character.title} " if character.noble?
+    lines[line_counter] += "#{character.rank} "  if character.rank
+    lines[line_counter] += "#{character.name} "  if character.name
+    lines[line_counter] += "#{character.gender} "  if character.gender
+    lines[line_counter] += "Age: #{character.age} "   if character.age
+    lines[line_counter] += "#{character.upp_to_s} " if character.upp
     if character.careers
       character.careers.each_pair do |career, terms|
-        lines[0] += "#{career}: #{terms} "
+        lines[line_counter] += "#{career}: #{terms} "
       end
     end
-    lines[2] =  ""
-    lines[2] += "#{character.appearence.capitalize} " if character.appearence
-    lines[3] =  ""
-    lines[3] += "Temperament: #{character.temperament.capitalize}   " if character.temperament
-    lines[3] += "Plot: #{character.plot[0].capitalize} (#{character.plot[-1]}) " if character.plot
-    lines[4] = ""
-    lines[4] += "Traits: #{character.traits.map(&:capitalize).join(', ')}" if character.traits
-    lines[5] =  ""
+    line_counter        += 1
+    lines[line_counter] =  ""
+    lines[line_counter] += "#{character.appearence.capitalize} " if character.appearence
+    line_counter        += 1
+    lines[line_counter] =  ""
+    lines[line_counter] += "Temperament: #{character.temperament.capitalize}   " if character.temperament
+    lines[line_counter] += "Plot: #{character.plot[0].capitalize} (#{character.plot[-1]}) " if character.plot
+    line_counter        += 1
+    lines[line_counter] = ""
+    lines[line_counter] += "Traits: #{character.traits.map(&:capitalize).join(', ')}" if character.traits
+    line_counter        += 1
+    lines[line_counter] =  ""
     if character.skills 
       character.skills.each_pair do |skill, level|
-        lines[5] += "#{skill}-#{level} "
+        lines[line_counter] += "#{skill}-#{level} "
       end
     end
-    lines[6] =  ""
+    line_counter        += 1
+    lines[line_counter] =  ""
     if character.stuff
-      lines[6] += "Cash: #{character.stuff["cash"]} " if character.stuff["cash"]
+      lines[line_counter] += "Cash: #{character.stuff["cash"]} " if character.stuff["cash"]
       if character.stuff["benefits"]
         character.stuff["benefits"].each do |k,v|
-          lines[6] +=  "#{k} (#{v}) "
+          lines[line_counter] +=  "#{k} (#{v}) "
         end
       end
     end
