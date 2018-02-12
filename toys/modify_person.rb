@@ -26,9 +26,11 @@ end
 
 collection.find({'background': /Oregund gang/}).each do |person|
   unless person['stuff2']
+    credits = rand(1..25)
+    gun     = ['Rifle', 'SMG', 'SMG', 'LAG', 'Shotgun', 'AutoRifle','Shotgun', 'Lacar', 'AssaultRifle'].sample
     stuff   = {
-      'cash'      => 250,
-      'benefits'  => {'Gun' =>1, 'Uniform' => 1}
+      'cash'      => credits,
+      'benefits'  => {gun =>1}
     }
     p_data  = { 
       'coll'      => collection,
