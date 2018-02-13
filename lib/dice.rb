@@ -1,14 +1,16 @@
-module Dice
+class Dice
 
-  def self.roll_dice(dice_type, dice_number, average_of = 1)
-    total = 0.0 
-    dice_number.times do
-      average_total = 0
-      average_of.times do
-        average_total += rand(dice_type) + 1
-      end
-      total += (average_total / average_of).round 
-    end
-    return total.to_i
+  def roll_1
+    rand(1..6)
   end
+
+  def roll_2
+    self.roll_1 + self.roll_1
+  end
+  
+  def roll_66
+    roll = self.roll_1.to_s + self.roll_1.to_s
+    return roll.to_i
+  end
+
 end
