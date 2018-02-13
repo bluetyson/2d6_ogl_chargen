@@ -7,6 +7,9 @@ module CharacterTools
   $DATA_PATH  = File.expand_path("../../data", __FILE__)
   require 'name'
   require 'errors'
+  require 'dice'
+
+  dice  = Dice.new
 
   NOBILITY = {
     11 => { "F" => "Dame",     "M" => "Knight" },
@@ -17,7 +20,8 @@ module CharacterTools
   }
 
   def roll_1
-    rand(1..6)
+    dice  = Dice.new
+    dice.roll_1
   end
 
   def roll_2
