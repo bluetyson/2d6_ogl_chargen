@@ -2,14 +2,18 @@
 # These methods are outside career data sets.
 
 
+
+  require 'dice'
+
 module CharacterTools
 
   $DATA_PATH  = File.expand_path("../../data", __FILE__)
   require 'name'
   require 'errors'
-  require 'dice'
 
-  dice  = Dice.new
+  def dice
+    @dice  ||= Dice.new
+  end
 
   NOBILITY = {
     11 => { "F" => "Dame",     "M" => "Knight" },
@@ -20,7 +24,6 @@ module CharacterTools
   }
 
   def roll_1
-    dice  = Dice.new
     dice.roll_1
   end
 
