@@ -1,8 +1,6 @@
 # CharacterTools implements modules for modifying Character objects.
 # These methods are outside career data sets.
 
-
-
   require 'dice'
 
 module CharacterTools
@@ -28,12 +26,11 @@ module CharacterTools
   end
 
   def roll_2
-    roll_1 + roll_1
+    dice.roll_2
   end
 
   def roll_66
-    roll = roll_1.to_s + roll_1.to_s
-    return roll.to_i
+    dice.roll_66
   end 
 
   def upp_to_s(upp = @upp)
