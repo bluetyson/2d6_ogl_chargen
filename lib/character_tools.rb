@@ -169,7 +169,7 @@ module CharacterTools
       stat_mod  = options["stat_mod"]
       character = options["character"]
       level     = stat_mod.split[0].to_i 
-      stat      = stat_mod.split[1].downcase
+      stat      = stat_mod.split[1].downcase.to_sym
       raise ArgumentError unless Integer(level)
       new_stat = character.upp[stat] + level
       new_stat = [new_stat, 15].min
@@ -276,9 +276,9 @@ module CharacterTools
     return skill_value
   end
 
-  def roll_modifier(char = character, st = stat, 
-    sk = skill, assume_zero = false)
-    skill_mod(char.skills, sk, assume_zero) + upp_mod(char.upp, st)
+  def roll_mod(char, skill, stat, assume_zero = false)
+    total_mod = skill_mod(char.skills, skill, assume_zero) + upp_mod(char.upp, stat)
+    return total_mod
   end
   
   module_function :get_random_line_from_file

@@ -162,7 +162,7 @@ class TestCharacterTools < Test::Unit::TestCase
 
   def test_skill_mod_has_skill
     skills = {"GunCbt" => 1, "Leader" => 1}
-    assert(skill_mod(skills, 'GunCbt') == 1)
+    assert(skill_mod(skills, "GunCbt") == 1)
   end
 
   def test_skill_mod_has_no_skill
@@ -170,19 +170,49 @@ class TestCharacterTools < Test::Unit::TestCase
     assert(skill_mod(skills, "Liaison") == -3)
   end
 
-  def test_skill_mod_has_no_zero_skill
-    skills = {"GunCbt" => 1, "Leader" => 1}
-    assert(skill_mod(skills, "Liaison", assume_zero = true) == 0)
-  end
-
-  def test_roll_modifier_has_no_skill_or_stat_no_zero
+  def test_roll_modifier_no_skill_no_stat_no_zero
     require 'character'
     my_character = Character.new
     my_character.upp   = {:str => 7, :dex => 7, :end => 7, 
       :int => 7, :edu => 7, :soc => 7}
     my_character.skills = {"GunCbt" => 1, "Leader" => 1}
-    assert(roll_modifier(character = my_character, 
-      skill = "Liaison", stat = :int) == -3)
+    assert(roll_mod(my_character, "Liaison", :int) == -3)
+  end
+
+  def test_roll_modifier_has_skill_no_stat_no_zero
+    require 'character'
+    my_character = Character.new
+    my_character.upp   = {:str => 7, :dex => 7, :end => 7, 
+      :int => 7, :edu => 7, :soc => 7}
+    my_character.skills = {"GunCbt" => 1, "Leader" => 1}
+    assert(roll_mod(my_character, "GunCbt", :int) == 1)
+  end
+
+  def test_roll_modifier_has_skill_has_stat_no_zero
+    require 'character'
+    my_character = Character.new
+    my_character.upp   = {:str => 7, :dex => 7, :end => 7, 
+      :int => 10, :edu => 7, :soc => 7}
+    my_character.skills = {"GunCbt" => 1, "Leader" => 1}
+    assert(roll_mod(my_character, "Leader", :int) == 2)
+  end
+
+  def test_roll_modifier_no_skill_no_stat_yes_zero
+    require 'character'
+    my_character = Character.new
+    my_character.upp   = {:str => 7, :dex => 7, :end => 7, 
+      :int => 7, :edu => 7, :soc => 7}
+    my_character.skills = {"GunCbt" => 1, "Leader" => 1}
+    assert(roll_mod(my_character, "Liaison", :int, true) == 0)
+  end
+
+  def test_roll_modifier_no_skill_has_stat_yes_zero
+    require 'character'
+    my_character = Character.new
+    my_character.upp   = {:str => 7, :dex => 7, :end => 7, 
+      :int => 10, :edu => 7, :soc => 7}
+    my_character.skills = {"GunCbt" => 1, "Leader" => 1}
+    assert(roll_mod(my_character, "Liaison", :int, true) == 1)
   end
 
 end
