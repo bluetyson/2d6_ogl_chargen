@@ -44,23 +44,6 @@ module CharacterTools
     return my_str
   end
 
-  def upp_mod(upp, stat)
-    case upp[stat]
-      when 15
-        3
-      when 13..14
-        2
-      when 10..12
-        1
-      when 3..5
-        -1
-      when 1..2
-        -2
-      else
-        0
-    end
-  end
-
   def generate_upp
     upp = Hash.new(0)
     upp[:str] = roll_2
@@ -137,6 +120,10 @@ module CharacterTools
       else              "citizen"
     end
     return status 
+  end
+
+  def noble?()
+    return @upp[:soc] > 10 ? true : false
   end
 
   def title( upp = @upp, gender = @gender)
@@ -261,10 +248,39 @@ module CharacterTools
     return morale
   end
 
-  def noble?()
-    return @upp[:soc] > 10 ? true : false
+  def upp_mod(upp, stat)
+    case upp[stat]
+      when 15
+        3
+      when 13..14
+        2
+      when 10..12
+        1
+      when 3..5
+        -1
+      when 1..2
+        -2
+      else
+        0
+    end
   end
 
+  def skill_mod(skills, skill, assume_zero=false)
+    if skills.has_key?(skill)
+      skill_value = skills[skill]
+    elsif assume_zero
+      skill_value = 0
+    else
+      skill_value = -3
+    end
+    return skill_value
+  end
+
+  def roll_modifier(char = character, st = stat, 
+    sk = skill, assume_zero = false)
+    skill_mod(char.skills, sk, assume_zero) + upp_mod(char.upp, st)
+  end
+  
   module_function :get_random_line_from_file
   module_function :generate_temperament
   module_function :generate_plot

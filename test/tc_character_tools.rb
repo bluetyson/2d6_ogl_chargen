@@ -160,4 +160,29 @@ class TestCharacterTools < Test::Unit::TestCase
     assert(upp_h[:end] == 12)
   end
 
+  def test_skill_mod_has_skill
+    skills = {"GunCbt" => 1, "Leader" => 1}
+    assert(skill_mod(skills, 'GunCbt') == 1)
+  end
+
+  def test_skill_mod_has_no_skill
+    skills = {"GunCbt" => 1, "Leader" => 1}
+    assert(skill_mod(skills, "Liaison") == -3)
+  end
+
+  def test_skill_mod_has_no_zero_skill
+    skills = {"GunCbt" => 1, "Leader" => 1}
+    assert(skill_mod(skills, "Liaison", assume_zero = true) == 0)
+  end
+
+  def test_roll_modifier_has_no_skill_or_stat_no_zero
+    require 'character'
+    my_character = Character.new
+    my_character.upp   = {:str => 7, :dex => 7, :end => 7, 
+      :int => 7, :edu => 7, :soc => 7}
+    my_character.skills = {"GunCbt" => 1, "Leader" => 1}
+    assert(roll_modifier(character = my_character, 
+      skill = "Liaison", stat = :int) == -3)
+  end
+
 end
