@@ -1,4 +1,3 @@
-"Title";"First Name";"Last Name";"Gender";"Age";"UPP";"Appearence";"Temperament";"Plot";"Traits";"Careers";"Skills";"Net Value (?)";"Stuff (?)";"Home Planet"
 ;"Abbey";"Rácz";"F";22;"ACA285";"Straight light white very long hair, chocolate skin";"Provider";"Mistaken jealousy (6)";"Centered, Gossipy";"Other-1";"Forgery-1";28077;"HighPsg (1)";"Iron"
 ;"Abbey";"Vazquez";"F";26;"95AAC9";"Straight medium auburn close cropped hair, tanned skin";"Fieldmarshal";"Self-sacrifice for an ideal (5)";"Idealistic, Pushy";"Citizen-2";"Computer-1,Bribery-1";13191;"Low Passage (1)";"Ianic"
 ;"Addie";"Dos";"F";26;"948A58";"Wavey medium auburn neck length hair, tanned skin";"Architect";"Discovery of the dishonour of a loved one (5)";"Appreciative, Judgmental";"Citizen-2";"Brawling-1";10630;"Gun (1) Low Passage (1)";"Mithril"
@@ -309,5 +308,5 @@
 ;"Xavier";"Haynes";"M";34;"4923A9";"Straight light auburn neck length hair, medium skin";"Inventor";"Madness (4)";"Sentimental, Extravagant";"Citizen-4";"Medical-2,Steward-1,Gambling-1";11479;"Middle Passage (1) Low Passage (1)";"Strouden"
 ;"Xavier";"Paquet";"M";34;657865;"Curly light black close cropped hair, medium skin";"Fieldmarshal";"Adultery (4)";"Philosophical, Apathetic";"Other-4";"Bribery-1,Electronic-2,Forgery-1,Vehicle-1";120197;"HighPsg (1) LowPsg (1)";"Sacnoth"
 ;"Youlanda";"Piquet";"F";30;"A466C6";"Straight medium black shoulder length hair, chocolate skin";"Protector";"Ambition (3)";"Thrifty, Verbose";"Citizen-3";"Steward-1";11336;"Low Passage (1) Gun (1)";"Gram"
-;"Beinon ";"Daniels";"M";28;583573;"Wavy full yellow short hair tanned skin";;;;"Citizen-2";"Mechanical-1, Vehicle(MineCrawler)-2, Leader-1, Gambling-0, Brawling-0";;;"Haearn"
-;"Nala";;"F";25;976875;"Chocolate skin, short gray hair";;;;"Citizen-1";"Eng-2";;;"Shirene"
+;"Beinon ";"Daniels";"M";28;"583573";"Wavy full yellow short hair tanned skin";"Protector";"Hope (1)";"Understanding, Self-doubting";"Citizen-2";"Mechanical-1, Vehicle(MineCrawler)-2, Leader-1, Gambling-0, Brawling-0";0;"Nothing";"Haearn"
+;"Nala";"Cameron";"F";25;"976875";"Chocolate skin, short gray hair";"Crafter";"Stolen (1)";"Helpful";"Citizen-1";"Eng-2";0;"Lipstick";"Shirene"

@@ -1,30 +1,30 @@
 
 # csv_to_mongo.rg
+$LOAD_PATH << File.expand_path('../../lib', __FILE__)
 
 require 'mongo'
 require 'character'
 require 'character_tools'
 require 'presenter'
 require 'optparse'
-require '../lib/errors'
+require 'errors'
 
 Mongo::Logger.logger.level = Logger::WARN
 client  = Mongo::Client.new(['localhost:27017'], :database => 'people')
 db      = client.database
-collection = client[:people]
+collection = client[:people2]
 
 begin
-  data_file = File.open('../data/converted_gang.csv', 'r')
-  temp_day  = 57
+  data_file = File.open('toys/data/ben_freed_slaves.csv', 'r')
+  temp_day  = 77
   temp_year = 1416
-  UPP     = Struct.new(:str, :dex, :end, :int, :edu, :soc)
 rescue UnreadableFile => e
   e.message
   exit
 end
 
-def upp_str_to_struct(upp)
-  new_upp = UPP.new
+def upp_str_to_hash(upp)
+  new_upp = Hash.new
   new_upp[:str] = upp[0].to_i(16)
   new_upp[:dex] = upp[1].to_i(16)
   new_upp[:end] = upp[2].to_i(16)
@@ -32,6 +32,40 @@ def upp_str_to_struct(upp)
   new_upp[:edu] = upp[4].to_i(16)
   new_upp[:soc] = upp[5].to_i(16)
   return new_upp
+end
+
+def comma_to_colon(line)
+  in_quote  = false
+  new_line  = ''
+  line.each_char { |c|
+    if c == '"'
+      c = ''
+      if not in_quote
+        in_quote = true
+      else
+        in_quote = false
+      end
+    end
+    if not in_quote
+      c = ':' if c == ';'
+    end
+    new_line += c
+  }
+  return new_line
+end
+
+def line_to_hash(line, sep = '-')
+  new_hash    = Hash.new
+  line        = line.strip()
+  line_array  = line.split(',')
+  line_array.each { |thing|
+    thing_array   = thing.split(sep)
+    key           = thing_array[0]
+    value         = thing_array[1]
+    value         = value.to_i if value !~ /\D/ 
+    new_hash[key] = value
+  }
+  return new_hash
 end
 
 def csv_to_hash(line, delim = ':') 
@@ -43,7 +77,7 @@ def csv_to_hash(line, delim = ':')
   new_char['name']        = "#{new_char['first_name']} #{new_char['last_name']}"
   new_char['gender']      = line_array[3]
   new_char['age']         = line_array[4]
-  new_char['upp']         = upp_str_to_struct(line_array[5])
+  new_char['upp']         = upp_str_to_hash(line_array[5])
   upp_s                   = line_array[5]
   new_char['appearence']  = line_array[6]
   new_char['temperament'] = line_array[7]
@@ -53,11 +87,21 @@ def csv_to_hash(line, delim = ':')
   new_char['plot']        = [plot_name, plot_strength] 
   new_char['traits']      = Array.new
   new_char['traits']      = line_array[9].split(', ')
+  puts line_array[11]
+  new_char['skills']      = Hash.new
+  new_char['skills']      = line_to_hash(line_array[11], '-')
+  new_char['stuff']       = Hash.new
+  new_char['stuff']['cash']     = line_array[11].to_i
+  new_char['stuff']['benefits'] = Hash.new
+  new_char['goods']       = line_array[12]
+  new_char['origin']      = line_array[14]
   return new_char, upp_s
 end
 
 data_file.each { |line|
   line  = line.strip()
+  line  = comma_to_colon(line)
+  puts line
   next if line.length < 5 or line.start_with?('#')
   c = Hash.new
   c, upp_s = csv_to_hash(line, ':')
@@ -73,9 +117,9 @@ data_file.each { |line|
     :gender     => character.gender,
     :age        => character.age, 
     :dob        => dob,
-    :origin_planet => 'Birach',
-    :group      => 'Dragons',
-    :background => 'Oregund gang',
+    :origin     => character.origin,
+    :group      => 'Freed',
+    :background => 'Slave',
     :upp_s      => upp_s,
     :appearence => character.appearence,
     :plot       => character.plot,

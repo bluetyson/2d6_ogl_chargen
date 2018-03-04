@@ -1,0 +1,1 @@
+"Title";"First Name";"Last Name";"Gender";"Age";"UPP";"Appearence";"Temperament";"Plot";"Traits";"Careers";"Skills";"Net Value (?)";"Stuff (?)";"Home Planet"
